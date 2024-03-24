@@ -1,0 +1,21 @@
+---
+- name: Install PHP and required modules
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - php-fpm
+    - php-mysql
+    - php-cli
+    - php-common
+    - php-gd
+    - php-curl
+    - php-json
+    - php-mbstring
+    - php-xml
+    - php-zip
+
+- name: Copy phpinfo.php to web server
+  template:
+    src: phpinfo.php.j2
+    dest: /var/www/html/phpinfo.php
